@@ -33,7 +33,7 @@ variable "nomad_node_ami_id" {
 variable "aws_subnet_id" {
 	description = "Default subnet to launch our nodes into"
 	type = list(string)
-	#default = ["subnet-07d8310503d3d9704","subnet-091d4411443e82465","subnet-07d8310503d3d9704"]
+	default = ["subnet-07d8310503d3d9704","subnet-091d4411443e82465","subnet-07d8310503d3d9704"]
 }
 
 variable "num_nomad_nodes" {
