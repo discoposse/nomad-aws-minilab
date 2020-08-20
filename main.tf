@@ -49,7 +49,7 @@ resource "aws_instance" "nomad-node" {
         Terraform = "true"
         ProvisionedBy = "Project Terra"
         Turbonomic = "true"
-        Name = "nomad-${count.index}"
+        Name = "nomad-node-${count.index}"
     }
 }
 
