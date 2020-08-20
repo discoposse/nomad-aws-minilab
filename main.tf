@@ -36,6 +36,7 @@ resource "aws_security_group" "instance" {
 ### Create Nomad Nodes on EC2
 
 resource "aws_instance" "nomad-node" {
+    count = var.num_nomad_nodes
     ami = var.nomad_node_ami_id
     instance_type = var.nomad_node_instance_size
     key_name = var.aws_key_name
@@ -48,6 +49,7 @@ resource "aws_instance" "nomad-node" {
         Terraform = "true"
         ProvisionedBy = "Project Terra"
         Turbonomic = "true"
+        Name = "nomad-${count.index}"
     }
 }
 
