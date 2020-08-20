@@ -41,6 +41,7 @@ resource "aws_instance" "nomad-node" {
     key_name = var.aws_key_name
     subnet_id = var.aws_subnet_id
     vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
+    associate_public_ip_address = true
 
     tags = {
         Terraform = "true"
