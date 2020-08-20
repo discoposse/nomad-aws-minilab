@@ -33,11 +33,11 @@ sudo chmod a+w /etc/nomad.d
 
 ### CONFIG FILE NEEDED
 
-# Install latest version of Consul
-CONSUL_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/consul | jq -r ".current_version")
+# Install Consul
+CONSUL_VERSION=1.8.3
 sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
 if [ ! -d consul ]; then
-  sudo unzip /tmp/consul.zip
+  sudo unzip consul.zip
 fi
 if [ ! -f /usr/bin/consul ]; then
   sudo install consul /usr/bin/consul

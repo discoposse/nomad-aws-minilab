@@ -1,11 +1,42 @@
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_region" {}
-variable "aws_vpc_id" {}
-variable "aws_key_fingerprint" {}
-variable "aws_key_name" {}
-variable "nomad_node_instance_size" {}
-variable "nomad_node_ami_id" {}
+variable "aws_access_key" {
+	description = "Access key for AWS account"
+}
+
+variable "aws_secret_key" {
+	description = "Secret for AWS account"
+}
+
+variable "aws_region" {
+	description = "The region name to deploy into"
+}
+
+variable "aws_vpc_id" {
+	description = "VPC ID to launch into"
+}
+
+variable "aws_key_fingerprint" {
+	description = "Fingrprint of your SSH key"
+}
+
+variable "aws_key_name" {
+	description = "SSH key name"
+}
+
+variable "nomad_node_instance_size" {
+	description = "EC2 instance type/size for Nomad nodes"
+}
+
+variable "nomad_node_ami_id" {
+	description = "AMI ID to use for Nomad nodes"
+}
+
 variable "aws_subnet_id" {
+	description = "Default subnet to launch our nodes into"
 	default = "subnet-07d8310503d3d9704"
+}
+
+variable "num_nomad_nodes" {
+  description = "The number of server nodes (should be 3 or 5)"
+  type        = number
+  default     = 3
 }
