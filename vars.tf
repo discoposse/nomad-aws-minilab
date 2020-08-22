@@ -39,5 +39,4 @@ variable "aws_subnet_id" {
 variable "num_nomad_nodes" {
   description = "The number of server nodes (should be 3 or 5)"
   type        = number
-  default     = 3
 }
