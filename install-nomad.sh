@@ -69,3 +69,5 @@ if [ $retval -eq 1 ]; then
   nomad -autocomplete-install
 fi
 
+### Install Ansible for config management
+sudo yum install ansible -y
