@@ -24,10 +24,7 @@ resource "aws_route_table" "nomad-lab-public-crt" {
 }
 
 resource "aws_route_table_association" "nomad-public" {
-    for_each = aws_subnet.nomad-lab-pub.id
-    #count = length(aws_subnet_ids.nomad-lab-pub.id)
-
-    
+    for_each = aws_subnet.nomad-lab-pub[count.index]
 
     subnet_id      = each.value.id
     route_table_id = aws_route_table.nomad-lab-public-crt.id
