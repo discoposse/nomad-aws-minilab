@@ -3,7 +3,7 @@ resource "aws_instance" "nomad-node" {
     ami = var.nomad_node_ami_id
     instance_type = var.nomad_node_instance_size
     key_name = var.aws_key_name
-    subnet_id = var.aws_subnet_id[count.index]
+    subnet_id = aws_subnet_id[count.index]
     vpc_security_group_ids = [ "${aws_security_group.instance.id}" ]
     associate_public_ip_address = true
     user_data = file("install-nomad.sh")
