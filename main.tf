@@ -1,6 +1,5 @@
 resource "aws_instance" "nomad-node" {
     count = var.nomad_node_count
-    vpc_id = aws_vpc.nomad-lab-vpc.id
     ami = var.nomad_node_ami_id
     instance_type = var.nomad_node_instance_size
     key_name = var.aws_key_name
