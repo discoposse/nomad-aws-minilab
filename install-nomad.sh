@@ -1,6 +1,9 @@
 #!/bin/bash
 # 
 # user-data script for deploying Nomad on Amazon Linux 2
+# 
+# Using the user-data / cloud init ensures we don't run twice
+#  
 
 # Update system and install dependencies
 sudo yum update -y
@@ -70,4 +73,4 @@ if [ $retval -eq 1 ]; then
 fi
 
 ### Install Ansible for config management
-sudo yum install ansible -y
+sudo amazon-linux-extras install ansible2 -y

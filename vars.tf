@@ -33,10 +33,23 @@ variable "nomad_node_ami_id" {
 variable "aws_subnet_id" {
 	description = "Default subnet to launch our nodes into"
 	type = list(string)
-	default = ["subnet-07d8310503d3d9704","subnet-091d4411443e82465","subnet-07d8310503d3d9704"]
 }
 
 variable "nomad_node_count" {
   description = "The number of server nodes (should be 3 or 5)"
   type        = number
+}
+
+variable "allowed_ip_network" {
+	description = "Networks allowed in security group for ingress rules"
+}
+
+variable "az_map" {
+	type = map
+
+	default = {
+		0 = "a"
+		1 = "b"
+		2 = "c"
+	}
 }
