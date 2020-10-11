@@ -1,6 +1,6 @@
 resource "aws_security_group" "instance" {
   name = "nomad-sg"
-  vpc_id = var.aws_vpc.nomad-lab-vpc.id
+  vpc_id = aws_vpc.nomad-lab-vpc.id
  
   ingress {
     from_port   = 80
