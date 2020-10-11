@@ -29,4 +29,9 @@ resource "aws_security_group" "nomad-sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags = {
+      Terraform = "true"
+      Turbonomic = "true"
+  }
 }
