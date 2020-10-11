@@ -1,4 +1,4 @@
-resource "aws_security_group" "instance" {
+resource "aws_security_group" "nomad-sg" {
   name = "nomad-sg"
   vpc_id = aws_vpc.nomad-lab-vpc.id
  
