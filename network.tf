@@ -23,10 +23,16 @@ resource "aws_route_table" "nomad-lab-public-crt" {
   	}
 }
 
-resource "aws_route_table_association" "nomad-public" {
-    for_each = aws_subnet.nomad-lab-pub[count.index]
-
-    subnet_id      = each.value.id
-    route_table_id = aws_route_table.nomad-lab-public-crt.id
+data "aws_subnet_ids" "nomad_subnets" {
+    vpc_id = aws_vpc.nomad-lab-vpc.id
+    filter {
+        name   = "tag:Name"
+        values = ["nomad-lab"]
+    }
 }
+ resource "aws_route_table_association" "private_rt_assoc_1a" {
+    count = "${length(data.aws_subnet_ids.nomad_subnets.ids)}"
+    subnet_id = element(data.aws_subnet_ids.nomad_subnets.ids, count.index)
+    route_table_id = aws_route_table.nomad-lab-public-crt.id
+ }
 
