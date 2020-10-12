@@ -35,5 +35,9 @@ resource "aws_route_table_association" "subnet_association" {
     for_each = data.aws_subnet_ids.nomad_subnets.ids
     subnet_id = each.value
     route_table_id = aws_route_table.nomad-lab-public-crt.id
+
+    lifecycle { 
+        create_before_destroy = true 
+    }
  }
 
