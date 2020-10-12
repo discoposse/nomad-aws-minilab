@@ -37,12 +37,9 @@ resource "aws_route_table" "nomad-lab-public-crt" {
 #}
 
 resource "aws_route_table_association" "subnet_association" {
-    for_each = data.aws_subnet_ids.nomad_subnets.ids
+    count = 3
+    for_each = aws_subnet.nomad-lab-pub.ids
 
-#    for_each = merge(
-#        { for component in local.components : component => aws_subnet.nomad-lab-pub[component].id },
-#        { "from_remote_state" = module.component_remote_state.rg_id },
-#    )
     subnet_id = each.value
     route_table_id = aws_route_table.nomad-lab-public-crt.id
 
