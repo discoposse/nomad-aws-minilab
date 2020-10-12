@@ -32,6 +32,7 @@ data "aws_subnet_ids" "nomad_subnets" {
 
     depends_on = [
         aws_subnet.nomad-lab-pub,
+        aws_route_table.nomad-lab-public-crt,
     ]
 }
 
@@ -46,6 +47,8 @@ resource "aws_route_table_association" "subnet_association" {
 
     depends_on = [
         aws_subnet.nomad-lab-pub,
+        data.aws_subnet_ids.nomad_subnets,
+        aws_route_table.nomad-lab-public-crt,
     ]
  }
 
