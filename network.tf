@@ -29,6 +29,10 @@ data "aws_subnet_ids" "nomad_subnets" {
         name   = "tag:Name"
         values = ["nomad-lab"]
     }
+
+    depends_on = [
+        aws_subnet.nomad-lab-pub,
+    ]
 }
 
 resource "aws_route_table_association" "subnet_association" {
@@ -41,7 +45,7 @@ resource "aws_route_table_association" "subnet_association" {
     }
 
     depends_on = [
-    aws_subnet.nomad-lab-pub,
-  ]
+        aws_subnet.nomad-lab-pub,
+    ]
  }
 
