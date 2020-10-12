@@ -32,7 +32,7 @@ data "aws_subnet_ids" "nomad_subnets" {
 }
  resource "aws_route_table_association" "private_rt_assoc_1a" {
     count = "${length(data.aws_subnet_ids.nomad_subnets.ids)}"
-    subnet_id = element(data.aws_subnet_ids.nomad_subnets.ids, count.index)
+    subnet_id = tolist(data.aws_subnet_ids.nomad_subnets.ids, count.index)
     route_table_id = aws_route_table.nomad-lab-public-crt.id
  }
 
