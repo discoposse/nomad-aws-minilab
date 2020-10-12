@@ -39,5 +39,9 @@ resource "aws_route_table_association" "subnet_association" {
     lifecycle { 
         create_before_destroy = true 
     }
+
+    depends_on = [
+    aws_subnet.nomad-lab-pub,
+  ]
  }
 
