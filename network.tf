@@ -23,26 +23,26 @@ resource "aws_route_table" "nomad-lab-public-crt" {
   	}
 }
 
-data "aws_subnet_ids" "nomad_subnets" {
-    vpc_id = aws_vpc.nomad-lab-vpc.id
-    filter {
-        name   = "tag:Name"
-        values = ["nomad-lab"]
-    }
+#data "aws_subnet_ids" "nomad_subnets" {
+#    vpc_id = aws_vpc.nomad-lab-vpc.id
+#    filter {
+#        name   = "tag:Name"
+#        values = ["nomad-lab"]
+#    }
 
-    depends_on = [
-        aws_subnet.nomad-lab-pub,
-        aws_route_table.nomad-lab-public-crt,
-    ]
-}
+#    depends_on = [
+#        aws_subnet.nomad-lab-pub,
+#        aws_route_table.nomad-lab-public-crt,
+#    ]
+#}
 
 resource "aws_route_table_association" "subnet_association" {
-    #for_each = data.aws_subnet_ids.nomad_subnets.ids
+    for_each = data.aws_subnet_ids.nomad_subnets.ids
 
-    for_each = merge(
-        { for component in local.components : component => aws_subnet.nomad-lab-pub[component].id },
-        { "from_remote_state" = module.component_remote_state.rg_id },
-    )
+#    for_each = merge(
+#        { for component in local.components : component => aws_subnet.nomad-lab-pub[component].id },
+#        { "from_remote_state" = module.component_remote_state.rg_id },
+#    )
     subnet_id = each.value
     route_table_id = aws_route_table.nomad-lab-public-crt.id
 
@@ -52,7 +52,7 @@ resource "aws_route_table_association" "subnet_association" {
 
     depends_on = [
         aws_subnet.nomad-lab-pub,
-        data.aws_subnet_ids.nomad_subnets,
+        #data.aws_subnet_ids.nomad_subnets,
         aws_route_table.nomad-lab-public-crt,
     ]
  }
