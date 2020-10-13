@@ -23,19 +23,6 @@ resource "aws_route_table" "nomad-lab-public-crt" {
   	}
 }
 
-#data "aws_subnet_ids" "nomad_subnets" {
-#    vpc_id = aws_vpc.nomad-lab-vpc.id
-#    filter {
-#        name   = "tag:Name"
-#        values = ["nomad-lab"]
-#    }
-
-#    depends_on = [
-#        aws_subnet.nomad-lab-pub,
-#        aws_route_table.nomad-lab-public-crt,
-#    ]
-#}
-
 resource "aws_route_table_association" "subnet_association" {
     count = 3
 
