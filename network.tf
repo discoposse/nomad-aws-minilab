@@ -39,7 +39,7 @@ resource "aws_route_table" "nomad-lab-public-crt" {
 resource "aws_route_table_association" "subnet_association" {
     count = 3
 
-    subnet_id = aws_subnet.nomad-lab-pub.id
+    subnet_id = aws_subnet.nomad-lab-pub[count.index].id
     route_table_id = aws_route_table.nomad-lab-public-crt.id
 
     lifecycle { 
