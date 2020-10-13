@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+scratch.txt
 
 # .tfstate files
 *.tfstate
