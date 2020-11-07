@@ -36,6 +36,8 @@ sudo chmod a+w /etc/nomad.d
 
 ### CONFIG FILE NEEDED
 
+curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/nomad-server.hcl -o /tmp/nomad-server.hcl
+
 # Install Consul
 CONSUL_VERSION=1.8.5
 sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
@@ -54,6 +56,8 @@ sudo chmod a+w /etc/consul.d
 
 
 ### CONFIG FILE NEEDED
+
+curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/consul-server.hcl -o /tmp/consul-server.hcl
 
 
 for bin in cfssl cfssl-certinfo cfssljson
