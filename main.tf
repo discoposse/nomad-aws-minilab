@@ -7,6 +7,7 @@ resource "aws_instance" "nomad-node" {
     vpc_security_group_ids = [aws_security_group.nomad-sg.id]
     associate_public_ip_address = true
     user_data = file("conf/install-nomad.sh")
+    private_ip = "10.0.${count.index}.100"
 
     tags = {
         Terraform = "true"
