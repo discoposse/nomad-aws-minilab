@@ -34,9 +34,10 @@ sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
 
 
-### CONFIG FILE NEEDED
+### CONFIG FILE COPY
 
 curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/nomad-server.hcl -o /tmp/nomad-server.hcl
+sudo cp /tmp/nomad-server.hcl /etc/nomad.d/nomad-server.hcl
 
 # Install Consul
 CONSUL_VERSION=1.8.5
@@ -55,9 +56,10 @@ sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
 
 
-### CONFIG FILE NEEDED
+### CONFIG FILE COPY
 
 curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/consul-server.hcl -o /tmp/consul-server.hcl
+sudo cp /tmp/consul-server.hcl /etc/consul.d/consul-server.hcl
 
 
 for bin in cfssl cfssl-certinfo cfssljson
@@ -78,3 +80,19 @@ fi
 
 ### Install Ansible for config management
 sudo amazon-linux-extras install ansible2 -y
+
+# Form Consul Cluster
+ps -C consul
+retval=$?
+if [ $retval -eq 0 ]; then
+  sudo killall consul
+fi
+sudo nohup consul agent --config-file /etc/consul.d/consul-server.hcl &>$HOME/consul.log &
+
+# Form Nomad Cluster
+ps -C nomad
+retval=$?
+if [ $retval -eq 0 ]; then
+  sudo killall nomad
+fi
+sudo nohup nomad agent -config /etc/nomad.d/nomad-server.hcl &>$HOME/nomad.log &
