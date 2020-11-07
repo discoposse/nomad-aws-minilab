@@ -33,11 +33,10 @@ sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
 
+# Nomad config file copy
 
-### CONFIG FILE COPY
-
-curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/nomad-server.hcl -o /tmp/nomad-server.hcl
-sudo cp /tmp/nomad-server.hcl /etc/nomad.d/nomad-server.hcl
+curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/nomad/server.hcl -o /tmp/nomad/server.hcl
+sudo cp /tmp/nomad/server.hcl /etc/nomad.d/server.hcl
 
 # Install Consul
 CONSUL_VERSION=1.8.5
@@ -55,12 +54,10 @@ sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
 
+# Consul config file copy
 
-### CONFIG FILE COPY
-
-curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/consul-server.hcl -o /tmp/consul-server.hcl
-sudo cp /tmp/consul-server.hcl /etc/consul.d/consul-server.hcl
-
+curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/server.hcl -o /tmp/consul/server.hcl
+sudo cp /tmp/consul/server.hcl /etc/consul.d/server.hcl
 
 for bin in cfssl cfssl-certinfo cfssljson
 do
@@ -78,7 +75,7 @@ if [ $retval -eq 1 ]; then
   nomad -autocomplete-install
 fi
 
-### Install Ansible for config management
+# Install Ansible for config management
 sudo amazon-linux-extras install ansible2 -y
 
 # Form Consul Cluster
