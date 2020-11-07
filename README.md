@@ -6,7 +6,7 @@ Small-scale HashiCorp Nomad running across AWS EC2 instances for quick testing a
 
 The Nomad AWS Mini-Lab is comprised of:
 
-* Create new IAM for EKS/EC2
+* Create new IAM for Nomad Lab
 * Set up new VPC
 * Create 3 public subnets
 * Create Security Groups for ingress and egress
@@ -37,7 +37,7 @@ Terraform configuration built for Terraform 0.13.4 or higher
 
 The lab does the following which is also completely removed when you do a deprovision/destroy so you have no unnecessary remnants left behind:
 
-* Create new IAM for EKS/EC2
+* Create new IAM for Nomad Lab
 * Set up new VPC
 * Create 3 public subnets
 * Create 3 private subnets
