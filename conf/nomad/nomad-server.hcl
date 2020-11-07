@@ -2,7 +2,7 @@ data_dir = "/tmp/nomad/server"
 
 server {
   enabled          = true
-  bootstrap_expect = 3
+  bootstrap_expect = 1
   job_gc_threshold = "2m"
 }
 
