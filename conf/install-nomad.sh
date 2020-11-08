@@ -84,7 +84,7 @@ retval=$?
 if [ $retval -eq 0 ]; then
   sudo killall consul
 fi
-#sudo nohup consul agent --config-file /etc/consul.d/consul-server.hcl &>$HOME/consul.log &
+sudo nohup consul agent --config-file /etc/consul.d/server.hcl &>$HOME/consul.log &
 
 # Form Nomad Cluster
 ps -C nomad
@@ -92,4 +92,4 @@ retval=$?
 if [ $retval -eq 0 ]; then
   sudo killall nomad
 fi
-#sudo nohup nomad agent -config /etc/nomad.d/nomad-server.hcl &>$HOME/nomad.log &
+#sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &

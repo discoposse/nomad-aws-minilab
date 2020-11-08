@@ -22,6 +22,83 @@ resource "aws_security_group" "nomad-sg" {
     protocol    = "tcp"
     cidr_blocks = var.allowed_ip_network
   }
+
+  ingress {
+    from_port   = 8300
+    to_port     = 8300
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8301
+    to_port     = 8301
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8301
+    to_port     = 8301
+    protocol    = "udp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8302
+    to_port     = 8302
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8302
+    to_port     = 8302
+    protocol    = "udp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8400
+    to_port     = 8400
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8500
+    to_port     = 8500
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8600
+    to_port     = 8600
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 8600
+    to_port     = 8600
+    protocol    = "udp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 21000
+    to_port     = 21000
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
+
+  ingress {
+    from_port   = 21255
+    to_port     = 21255
+    protocol    = "tcp"
+    cidr_blocks = var.allowed_ip_network
+  }
  
   egress {
     from_port   = 0
