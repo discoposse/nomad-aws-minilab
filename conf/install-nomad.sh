@@ -92,4 +92,4 @@ retval=$?
 if [ $retval -eq 0 ]; then
   sudo killall nomad
 fi
-#sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
+sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &

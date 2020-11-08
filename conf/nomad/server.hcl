@@ -2,13 +2,17 @@ data_dir = "/tmp/nomad/server"
 
 server {
   enabled          = true
-  bootstrap_expect = 1
+  bootstrap_expect = 3
   job_gc_threshold = "2m"
+  server_join {
+    retry_join = ["10.0.0.100", "10.0.1.100", "10.0.2.100"]
+    retry_max = 10
+    retry_interval = "15s"
+  }
 }
 
 datacenter = "dc-aws-1"
-
-region = "east"
+region = "region-aws-1"
 
 advertise {
   http = "{{ GetInterfaceIP `eth0` }}"
