@@ -5,3 +5,12 @@ output "private_ip_addr" {
 output "public_ip_addr" {
     value = aws_instance.nomad-node[*].public_ip
 }
+
+output "consul_url" {
+  value = "http://${aws_instance.nomad-node[*].public_ip}:8500/ui"
+}
+
+output "consul_url" {
+  value = "http://${aws_instance.nomad-node[*].public_ip}:4646/ui"
+}
+
