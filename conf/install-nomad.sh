@@ -34,8 +34,8 @@ sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
 
 # Nomad config file copy
-
-curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/nomad/server.hcl -o /tmp/nomad/server.hcl
+sudo mkdir -p /tmp/nomad
+sudo curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/nomad/server.hcl -o /tmp/nomad/server.hcl
 sudo cp /tmp/nomad/server.hcl /etc/nomad.d/server.hcl
 
 # Install Consul
@@ -55,8 +55,8 @@ sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
 
 # Consul config file copy
-
-curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/server.hcl -o /tmp/consul/server.hcl
+sudo mkdir -p /tmp/consul
+sudo curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/conf/consul/server.hcl -o /tmp/consul/server.hcl
 sudo cp /tmp/consul/server.hcl /etc/consul.d/server.hcl
 
 for bin in cfssl cfssl-certinfo cfssljson
