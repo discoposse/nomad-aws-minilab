@@ -7,10 +7,10 @@ output "public_ip_addr" {
 }
 
 output "consul_url" {
-  value = "http://${aws_instance.nomad-node[*].public_ip}:8500/ui"
+  value = "http://${aws_instance.nomad-node[0].public_ip}:8500/ui"
 }
 
 output "nomad_url" {
-  value = "http://${aws_instance.nomad-node[*].public_ip}:4646/ui"
+  value = "http://${aws_instance.nomad-node[0].public_ip}:4646/ui"
 }
 
