@@ -10,7 +10,7 @@ output "consul_url" {
   value = "http://${aws_instance.nomad-node[*].public_ip}:8500/ui"
 }
 
-output "consul_url" {
+output "nomad_url" {
   value = "http://${aws_instance.nomad-node[*].public_ip}:4646/ui"
 }
 
