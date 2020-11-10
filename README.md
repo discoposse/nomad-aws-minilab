@@ -6,7 +6,6 @@ Small-scale HashiCorp Nomad running across AWS EC2 instances for quick testing a
 
 The Nomad AWS Mini-Lab is comprised of:
 
-* Create new IAM for Nomad Lab
 * Set up new VPC
 * Create 3 public subnets
 * Create Security Groups for ingress and egress
@@ -37,15 +36,13 @@ Terraform configuration built for Terraform 0.13.4 or higher
 
 The lab does the following which is also completely removed when you do a deprovision/destroy so you have no unnecessary remnants left behind:
 
-* Create new IAM for Nomad Lab
 * Set up new VPC
 * Create 3 public subnets
-* Create 3 private subnets
 * Create Security Groups for ingress and egress
 * Create an Internet Gateway
 * Create a Routing Table and Subnet Associations
-* Create an EKS Cluster
-* Create an EKS Node Group
+* Create a 3-node Consul Cluster
+* Add Nomad to the 3-node Cluster
 
 ## Variables Needed for Terraform
 
@@ -68,5 +65,5 @@ This was built using a VCS-backed configuration using GitHub using the very repo
 
 ## What's Missing?
 
-This is work in progress. More is being done for the automatic clustering setup and deployment scripts/processes for both Nomad and Consul which will help this be much more self-starting. As of now this builds all the underlayers and deploys the code. You will only need to configure your Nomad and Consul...which should be fixed for automation shortly! (EW - 10/14/2020)
+This is work in progress. Code contributions or ideas alwasy welcome via Issues or PR!
 
