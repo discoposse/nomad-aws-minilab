@@ -31,3 +31,7 @@ client {
   network_interface = "eth0"
   servers           = ["10.0.0.100", "10.0.1.100", "10.0.2.100"]
 }
+
+acl {
+  enabled = true
+}
