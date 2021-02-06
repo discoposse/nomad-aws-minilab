@@ -1,6 +1,6 @@
-data "template_file" "client" {
-  template = file("conf/install-nomad.sh")
-}
+#data "template_file" "client" {
+#  template = file("conf/install-nomad.sh")
+#}
 data "template_cloudinit_config" "config" {
   gzip          = false
   base64_encode = false
@@ -24,8 +24,8 @@ data "template_cloudinit_config" "config" {
     EOF
   }
   #second part
-  part {
-    content_type = "text/x-shellscript"
-    content      = data.template_file.client.rendered
-  }
+  #part {
+  #  content_type = "text/x-shellscript"
+  ##  content      = data.template_file.client.rendered
+  #}
 }
