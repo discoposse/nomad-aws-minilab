@@ -35,6 +35,10 @@ variable "allowed_ip_network" {
 	description = "Networks allowed in security group for ingress rules"
 }
 
+variable "new_relic_key" {
+	description = "New Relic key if needed for automatic add of EC2 nodes to monitoring"
+}
+
 variable "az_map" {
 	type = map
 
