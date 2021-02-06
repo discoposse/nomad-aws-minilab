@@ -94,5 +94,17 @@ if [ $retval -eq 0 ]; then
 fi
 sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
 
+# Install New Relic Agent
+# Create a configuration file and add your license key \
+echo "license_key: ${new_relic_license}" | sudo tee -a /etc/newrelic-infra.yml && \
+\
+# Create the agent's yum repository \
+sudo curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64/newrelic-infra.repo && \
+\
+# Update your yum cache \
+sudo yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra' && \
+\
+# Run the installation script \
+sudo yum install newrelic-infra -y
 
 
