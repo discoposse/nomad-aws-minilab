@@ -18,8 +18,8 @@ sudo amazon-linux-extras install docker -y
 sudo systemctl restart docker
 
 # Install Nomad
-#NOMAD_VERSION=0.12.7
-sudo curl -sSL https://releases.hashicorp.com/nomad/1.0.1/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
+NOMAD_VERSION=1.0.1
+sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 if [ ! -d nomad ]; then
   sudo unzip nomad.zip
 fi
@@ -39,8 +39,8 @@ sudo curl https://raw.githubusercontent.com/discoposse/nomad-aws-minilab/master/
 sudo cp /tmp/nomad/server.hcl /etc/nomad.d/server.hcl
 
 # Install Consul
-#CONSUL_VERSION=1.8.5
-sudo curl -sSL https://releases.hashicorp.com/consul/1.8.5/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
+CONSUL_VERSION=1.8.5
+sudo curl -sSL https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip > consul.zip
 if [ ! -d consul ]; then
   sudo unzip consul.zip
 fi

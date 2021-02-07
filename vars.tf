@@ -39,10 +39,6 @@ variable "new_relic_key" {
 	description = "New Relic key if needed for automatic add of EC2 nodes to monitoring"
 }
 
-variable "nomad_version" {}
-
-variable "consul_version" {}
-
 variable "az_map" {
 	type = map
 
