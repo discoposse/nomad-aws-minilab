@@ -10,7 +10,7 @@ resource "aws_instance" "nomad-node" {
 
     #user_data = templatefile("conf/install-nomad.sh",new_relic_license = ${var.new_relic_key})
 
-    user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key} , { nomad_version = var.nomad_version } , {consul_version = var.consul_version })
+    user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key, nomad_version = var.nomad_version, consul_version = var.consul_version })
     private_ip = "10.0.${count.index}.100"
 
     tags = {
