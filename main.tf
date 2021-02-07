@@ -6,19 +6,19 @@ resource "aws_instance" "nomad-node" {
     subnet_id = aws_subnet.nomad-lab-pub[count.index].id
     vpc_security_group_ids = [aws_security_group.nomad-sg.id]
     associate_public_ip_address = true
-    #user_data = file("conf/install-nomad.sh")
+    user_data = file("conf/install-nomad.sh")
 
     #user_data = templatefile("conf/install-nomad.sh",new_relic_license = ${var.new_relic_key})
 
     #user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key, nomad_ver = var.nomad_version, consul_ver = var.consul_version })
 
-    user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key })
+    #user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key })
 
-    
+
 
     #policy = templatefile("${path.module}/policy.tpl", {
-    name = "Justin"
-  })
+    #name = "Justin"
+  #})
 
     private_ip = "10.0.${count.index}.100"
 
