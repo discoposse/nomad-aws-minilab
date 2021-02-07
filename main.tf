@@ -14,6 +14,12 @@ resource "aws_instance" "nomad-node" {
 
     user_data = templatefile("conf/install-nomad.sh", { new_relic_license = var.new_relic_key })
 
+    
+
+    #policy = templatefile("${path.module}/policy.tpl", {
+    name = "Justin"
+  })
+
     private_ip = "10.0.${count.index}.100"
 
     tags = {
