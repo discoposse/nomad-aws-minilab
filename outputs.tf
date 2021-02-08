@@ -18,7 +18,7 @@ output "consul_token" {
 	value = var.consul_token
 }
 
-output "consul_token" {
+output "nomad_token" {
 	value = var.nomad_token
 }
 
