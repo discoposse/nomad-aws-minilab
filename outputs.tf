@@ -19,5 +19,5 @@ output "ec2_nodes" {
 }
 
 output "connection_info" {
-	value = "ssh -i aws_instance.nomad-node[*].key_name aws_instance.nomad-node[*].public_dns
+	value = "ssh -i ${aws_instance.nomad-node[*].key_name} ${aws_instance.nomad-node[*].public_dns}"
 }
