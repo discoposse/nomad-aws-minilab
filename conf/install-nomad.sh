@@ -96,8 +96,32 @@ sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
 
 # Bootstrap Nomad and Consul ACL environment
 
-#sudo nomad acl bootstrap 
-#sudo consul acl bootstrap 
+# Write anonymous policy file 
 
-#export NOMAD_TOKEN="31415926-5358-9793-2384-626433834197"
-#export CONSUL_HTTP_TOKEN="31415926-5358-9793-2384-626433834197"
+sudo tee -a /tmp/anonymous.policy <<EOF
+namespace "*" {
+  policy       = "write"
+  capabilities = ["alloc-node-exec"]
+}
+
+agent {
+  policy = "write"
+}
+
+operator {
+  policy = "write"
+}
+
+quota {
+  policy = "write"
+}
+
+node {
+  policy = "write"
+}
+
+host_volume "*" {
+  policy = "write"
+}
+EOF
+
