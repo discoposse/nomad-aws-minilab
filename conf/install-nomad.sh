@@ -94,6 +94,9 @@ if [ $retval -eq 0 ]; then
 fi
 sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
 
-#sudo nomad acl bootstrap -token 31415926-5358-9793-2384-626433834197
-#sudo consul acl bootstrap -token 31415926-5358-9793-2384-626433834197
+export NOMAD_TOKEN="31415926-5358-9793-2384-626433834197"
+export CONSUL_HTTP_TOKEN="31415926-5358-9793-2384-626433834197"
+
+#sudo nomad acl bootstrap -token "31415926-5358-9793-2384-626433834197"
+#sudo consul acl bootstrap -token "31415926-5358-9793-2384-626433834197"
 
