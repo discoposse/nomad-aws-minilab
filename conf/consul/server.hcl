@@ -11,7 +11,7 @@ retry_max        = 10
 retry_interval   = "15s"
 
 acl = {
-  enabled = true
+  enabled = false
   default_policy = "allow"
   enable_token_persistence = true
 }
