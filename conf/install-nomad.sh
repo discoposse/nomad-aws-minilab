@@ -18,7 +18,7 @@ sudo amazon-linux-extras install docker -y
 sudo systemctl restart docker
 
 # Install Nomad
-NOMAD_VERSION=1.1.0
+NOMAD_VERSION=1.0.0
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 if [ ! -d nomad ]; then
   sudo unzip nomad.zip
