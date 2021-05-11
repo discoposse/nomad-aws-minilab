@@ -94,6 +94,9 @@ if [ $retval -eq 0 ]; then
 fi
 sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
 
+# deploy Instana
+curl -o setup_agent.sh https://setup.instana.io/agent && chmod 700 ./setup_agent.sh && sudo ./setup_agent.sh -a -WaQSGwsSSK1lzli2YQ8_g -t dynamic -e ingress-orange-saas.instana.io:443 -s -y
+
 # Bootstrap Nomad and Consul ACL environment
 
 # Write anonymous policy file 
