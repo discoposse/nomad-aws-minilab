@@ -17,6 +17,10 @@ fi
 sudo amazon-linux-extras install docker -y
 sudo systemctl restart docker
 
+# Set up volumes
+sudo mkdir /data /data/mysql /data/certs /data/prometheus /data/templates
+sudo chown root -R /data
+
 # Install Nomad
 NOMAD_VERSION=1.1.0
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
@@ -84,7 +88,7 @@ retval=$?
 if [ $retval -eq 0 ]; then
   sudo killall consul
 fi
-sudo nohup consul agent --config-file /etc/consul.d/server.hcl &>$HOME/consul.log &
+sudo nohup consul agent --config-file /etc/consul.d/server.hcl >$HOME/consul.log &
 
 # Form Nomad Cluster
 ps -C nomad
@@ -92,10 +96,7 @@ retval=$?
 if [ $retval -eq 0 ]; then
   sudo killall nomad
 fi
-sudo nohup nomad agent -config /etc/nomad.d/server.hcl &>$HOME/nomad.log &
-
-# deploy Instana
-curl -o setup_agent.sh https://setup.instana.io/agent && chmod 700 ./setup_agent.sh && sudo ./setup_agent.sh -a -WaQSGwsSSK1lzli2YQ8_g -t dynamic -e ingress-orange-saas.instana.io:443 -s -y
+sudo nohup nomad agent -config /etc/nomad.d/server.hcl >$HOME/nomad.log &
 
 # Bootstrap Nomad and Consul ACL environment
 

@@ -1,6 +1,6 @@
 # There can only be a single job definition per file.
 # Create a job with ID and Name 'example'
-job "redis" {
+job "helloapp" {
 	# Run the job in the global region, which is the default.
 	region = "region-aws-1"
 
@@ -33,10 +33,10 @@ job "redis" {
 
 	# Create a 'cache' group. Each task in the group will be
 	# scheduled onto the same machine.
-	group "cache" {
+	group "hello" {
 		# Control the number of instances of this group.
 		# Defaults to 1
-		# count = 1
+		count = 1
 
 		# Configure the restart policy for the task group. If not provided, a
 		# default is used based on the job type.
@@ -56,27 +56,27 @@ job "redis" {
 		}
 
 		# Define a task to run
-		task "redis" {
+		task "hello" {
 			# Use Docker to run the task.
 			driver = "docker"
 
 			# Configure Docker driver with the image
 			config {
-				image = "redis:latest"
-				port_map {
-					db = 6379
-				}
-			}
-
+                          image = "gerlacdt/helloapp:v0.1.0"
+                          port_map {
+                            http = 8080
+                          }
+                        }
 			service {
-				name = "${TASKGROUP}-redis"
-				tags = ["global", "cache"]
-				port = "db"
+				name = "${TASKGROUP}-service"
+				tags = ["global", "hello", "urlprefix-hello.internal/"]
+				port = "http"
 				check {
-					name = "alive"
-					type = "tcp"
-					interval = "10s"
-					timeout = "2s"
+				  name = "alive"
+				  type = "http"
+				  interval = "10s"
+				  timeout = "3s"
+				  path = "/health"
 				}
 			}
 
@@ -87,8 +87,8 @@ job "redis" {
 				cpu = 500 # 500 MHz
 				memory = 128 # 128MB
 				network {
-					mbits = 10
-					port "db" {
+					mbits = 1
+					port "http" {
 					}
 				}
 			}
@@ -104,14 +104,14 @@ job "redis" {
 			# }
 
 			# Specify configuration related to log rotation
-			# logs {
-			#     max_files = 10
-			#     max_file_size = 15
-			# }
+			logs {
+			    max_files = 10
+			    max_file_size = 15
+			}
 
 			# Controls the timeout between signalling a task it will be killed
 			# and killing the task. If not set a default is used.
-			# kill_timeout = "20s"
+			kill_timeout = "10s"
 		}
 	}
 }
